@@ -27,6 +27,16 @@ CREATE TABLE IF NOT EXISTS websites (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS credentials (
+    username VARCHAR(128) NOT NULL,
+    password VARBINARY(512) NOT NULL,
+    email_address VARCHAR(128) NOT NULL,
+    user_id SMALLINT NOT NULL,  --relation to users table. Way to know which user this username and password is associated with.
+    site_id SMALLINT NOT NULL,  --relation to websites table. Way to know what website this is associated with.
+    comment VARCHAR(512),
+    timestamp DATE NOT NULL
+);
+
 
 
 /* Insert values for the database */
