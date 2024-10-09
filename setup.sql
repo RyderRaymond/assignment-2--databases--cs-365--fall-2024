@@ -21,9 +21,11 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS websites (
-    name VARCHAR(256) NOT NULL,
-
-)
+    name VARCHAR(128) NOT NULL,
+    url VARCHAR(256) NOT NULL,
+    id SMALLINT NOT NULL,
+    PRIMARY KEY (id)
+);
 
 
 
