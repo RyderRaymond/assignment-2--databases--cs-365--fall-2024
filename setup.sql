@@ -13,7 +13,17 @@ use passwords;
 
 
 /* Create the tables for the database */
+CREATE TABLE IF NOT EXISTS users (
+    first_name VARCHAR(128) NOT NULL,
+    last_name VARCHAR(128) NOT NULL,
+    id SMALLINT NOT NULL,
+    PRIMARY KEY (id)
+);
 
+CREATE TABLE IF NOT EXISTS websites (
+    name VARCHAR(256) NOT NULL,
+
+)
 
 
 
