@@ -12,7 +12,15 @@ GRANT ALL PRIVILEGES ON passwords.*  TO 'passwords_db_user'@'localhost';
 use passwords;
 
 
+/* Set up encryption */
+
+SET block_encryption_mode = 'aes-256-cbc';
+SET @key_str = UNHEX(SHA2('my secret passphrase', 512));
+SET @init_vector = RANDOM_BYTES(16);
+
+
 /* Create the tables for the database */
+
 CREATE TABLE IF NOT EXISTS users (
     first_name VARCHAR(128) NOT NULL,
     last_name VARCHAR(128) NOT NULL,
