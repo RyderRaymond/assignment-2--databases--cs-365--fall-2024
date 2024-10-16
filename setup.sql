@@ -4,6 +4,9 @@ DROP DATABASE IF EXISTS passwords;
 
 CREATE DATABASE passwords;
 
+
+/* Create a new user for this database. Not required, but included anyway.*/
+
 DROP USER IF EXISTS 'passwords_db_user'@'localhost';
 
 CREATE USER 'passwords_db_user'@'localhost' IDENTIFIED BY 'HVGyt789uIOJknbhvgytf&^89uionjk';
@@ -44,7 +47,7 @@ CREATE TABLE IF NOT EXISTS accounts (
   user_id SMALLINT NOT NULL,  -- Relation to users table. Way to know which user this username and password is associated with.
   site_id SMALLINT NOT NULL,  -- Relation to websites table. Way to know what website this is associated with.
   comment VARCHAR(512),
-  time_stamp DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  time_stamp DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- Automatically sets the timestamp to current time and updates it if the account is updated.
 
   -- The same user cannot have a second account at the same website with the same username.
   PRIMARY KEY (user_id, site_id, username),
@@ -52,7 +55,7 @@ CREATE TABLE IF NOT EXISTS accounts (
   /*
     Ensures that deletion of a user results in deleting their accounts, and updating the user's id is reflected in
     their accounts. Prevents "dangling" accounts with no user who "owns" them.
-    */
+  */
   FOREIGN KEY (user_id)
     REFERENCES users(user_id)
     ON UPDATE CASCADE
@@ -61,7 +64,7 @@ CREATE TABLE IF NOT EXISTS accounts (
   /*
     Similar to the foreign key for user_id, so that if a website is deleted, accounts that are connected to it are
     deleted with it.
-    */
+  */
   FOREIGN KEY (site_id)
     REFERENCES websites(site_id)
     ON UPDATE CASCADE
