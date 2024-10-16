@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS websites (
   PRIMARY KEY (site_id)
 );
 
+/* Accounts table holds information for a user's account at a website, including their username and password. */
 CREATE TABLE IF NOT EXISTS accounts (
   username VARCHAR(128) NOT NULL,
   password VARBINARY(512) NOT NULL,
@@ -87,7 +88,7 @@ INSERT INTO websites (site_name, url) VALUES
   ('Youtube', 'https://www.youtube.com/'),
   ('GitHub', 'https://github.com/'),
   ('Crunchyroll', 'https://www.crunchyroll.com/'),
-  ('Uhart blackboard', 'https://blackboard.hartford.edu/'),
+  ('Uhart blackboard', 'http://blackboard.hartford.edu/'), -- pretend blackboard only has http to demonstrate getting only accounts associated with https URLs
   ('Netflix', 'https://www.netflix.com/browse');
 
 
