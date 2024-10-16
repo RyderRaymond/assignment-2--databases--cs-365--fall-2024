@@ -13,7 +13,7 @@ INSERT INTO users (first_name, last_name) VALUES ('Chris', 'Hemsworth');
 /* Create a new entry for a website */
 INSERT INTO websites (site_name, url) VALUES ('Marvel', 'https://www.marvel.com/');
 
-/* Create a new entry for a password */
+/* Create a new entry for a password to the previous user and website */
 INSERT INTO accounts (username, password, email_address, user_id, site_id, comment) VALUES
   ('thor_odinson', AES_ENCRYPT('#%ThePasswordForChrisHemsworthOrThor()*&', @key_str, @init_vector), 'chemsworth@marvel.com', 6, 6, 'This is a new account for Chris Hemsworth at Marvel Studios');
 
