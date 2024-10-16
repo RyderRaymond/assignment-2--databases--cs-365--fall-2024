@@ -79,3 +79,35 @@ SELECT accounts.username,
 /*
 Change a URL associated with one of the passwords in your 10 entries ------------------------------------------------------------------------------------------
 */
+
+/* Updates the website that is associated with an account that has password '2"dG1Y6v,TdRz4-5D|bzWR~U?=][_'. This will update Netflix. */
+UPDATE websites, accounts
+  SET websites.url = 'https://netflix.com/library'
+  WHERE websites.site_id = accounts.site_id
+  AND CAST(AES_DECRYPT(accounts.password, @key_str, @init_vector) AS CHAR) = '2"dG1Y6v,TdRz4-5D|bzWR~U?=][_';
+
+
+
+/*
+Change any password -------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+UPDATE accounts
+  SET password = AES_ENCRYPT('&#(@SettingANewPassword5123', @key_str, @init_vector)
+  WHERE username = 'rosiene';
+
+
+/*
+Remove a tuple based on a URL ---------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/* Deletes the website, and due to the foreign key, deletes accounts for this website (the account associated with username 'the_honored_one') */
+DELETE FROM websites WHERE url = 'https://www.crunchyroll.com/';
+
+
+/*
+Remove a tuple based on a password ----------------------------------------------------------------------------------------------------------------------------
+*/
+
+/* Deletes Professor Vanegas' UHART account */
+DELETE FROM accounts WHERE CAST(AES_DECRYPT(accounts.password, @key_str, @init_vector) AS CHAR) = 'qK13*M29 S0HL&aMGFQ{MsN6<^T{o_';
