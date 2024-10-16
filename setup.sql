@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS accounts (
   user_id SMALLINT NOT NULL,  -- Relation to users table. Way to know which user this username and password is associated with.
   site_id SMALLINT NOT NULL,  -- Relation to websites table. Way to know what website this is associated with.
   comment VARCHAR(512),
-  time_stamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+  time_stamp DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
   -- The same user cannot have a second account at the same website with the same username.
   PRIMARY KEY (user_id, site_id, username),
